@@ -1,6 +1,9 @@
 package com.mastercard.connectivity.exception;
 
+import com.mastercard.connectivity.ConnectivityApplication;
 import com.mastercard.connectivity.util.ApiResullt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
@@ -19,6 +22,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @RestControllerAdvice
 public class RestApiExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(RestApiExceptionHandler.class);
+
     @ExceptionHandler({ServletRequestBindingException.class, HttpMediaTypeException.class, NoHandlerFoundException.class
             , HttpRequestMethodNotSupportedException.class, TypeMismatchException.class, HttpMessageConversionException.class
             , MethodArgumentNotValidException.class, MissingServletRequestPartException.class, AsyncRequestTimeoutException.class
@@ -26,6 +31,7 @@ public class RestApiExceptionHandler {
             })
     @ResponseStatus(HttpStatus.OK)
     public String handleClientExceptions(Exception exception){
+        logger.error("Unexpected input is supplied,exceptionNameResolved={}", exception.getMessage());
         return ApiResullt.NO.getValue();
     }
 }
