@@ -49,13 +49,11 @@ public class ConnectedGraph {
      * @return true if there exists a road between {origin} and {destination}, false otherwise
      */
     public boolean hasRoadBetween(City origin, City destination) {
-        logger.info("** Checking road between [{} and {}] cities", origin.getName(), destination.getName());
+        logger.info("** Checking road between [{} and {}] cities", origin, destination);
         if(!(connections.containsKey(origin) && connections.containsKey(destination)))
             return false;
 
-        boolean directRoad = connections.containsKey(origin)
-                && connections.get(origin) != null
-                && connections.get(origin).contains(destination);
+        boolean directRoad = connections.get(origin).contains(destination);
 
         boolean indirectRoad = false;
         if (!directRoad) {

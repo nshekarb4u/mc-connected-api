@@ -20,9 +20,10 @@ import java.util.Scanner;
 public class ConnectedService {
 
     private static final Logger logger = LoggerFactory.getLogger(ConnectedService.class);
-    private final ConnectedGraph connectedGraph = new ConnectedGraph();;
 
-    @Value("${app.routes.file-name}")
+    final ConnectedGraph connectedGraph = new ConnectedGraph();
+
+    @Value("${app.roads.file-name}")
     private String fileName;
 
     @PostConstruct
@@ -51,7 +52,7 @@ public class ConnectedService {
     }
 
     public boolean hasRoadBetween(String origin, String destination){
-        return connectedGraph.hasRoadBetween(new City(origin), new City(destination));
+        return getConnectedGraph().hasRoadBetween(new City(origin), new City(destination));
     }
 
 }

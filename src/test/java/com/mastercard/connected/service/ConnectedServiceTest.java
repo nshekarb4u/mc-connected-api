@@ -10,8 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.FileNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
@@ -41,14 +40,6 @@ class ConnectedServiceTest {
         assertThrows(Exception.class,()->service.loadCitiesFile());
     }
     @Test
-    void verify_direct_road_connection() throws Exception {
-        service.setFileName("city.txt");
-        ConnectedGraph connectedGraph = service.loadCitiesFile();
-        City origin = new City("Newark");
-        City target = new City("Boston");
-        assertEquals(true,connectedGraph.hasRoadBetween(origin,target));
-    }
-    @Test
     void verify_bi_directional_road_connection() throws Exception {
         service.setFileName("city.txt");
         ConnectedGraph connectedGraph = service.loadCitiesFile();
@@ -69,8 +60,30 @@ class ConnectedServiceTest {
     void verify_when_no_road_connection() throws Exception {
         service.setFileName("city.txt");
         ConnectedGraph connectedGraph = service.loadCitiesFile();
-        City origin = new City("Philadelphia");
-        City target = new City("Albany");
-        assertEquals(false,connectedGraph.hasRoadBetween(origin,target));
+        assertFalse(service.hasRoadBetween("Philadelphia","Albany"));
+    }
+    @Test
+    void verify_direct_road_connection() throws Exception {
+        service.setFileName("city.txt");
+        service.loadCitiesFile();
+        String origin = "Newark";
+        String target = "Boston";
+        assertTrue(service.hasRoadBetween(origin,target));
+    }
+    @Test
+    void verify_when_given_origin_city_is_no_available() throws Exception {
+        service.setFileName("city.txt");
+        service.loadCitiesFile();
+        String origin = "ZSDFGTHG";
+        String target = "Boston";
+        assertFalse(service.hasRoadBetween(origin,target));
+    }
+    @Test
+    void verify_when_given_destination_city_is_no_available() throws Exception {
+        service.setFileName("city.txt");
+        service.loadCitiesFile();
+        String origin = "Boston";
+        String target = "WSEFRGHH#$";
+        assertFalse(service.hasRoadBetween(origin,target));
     }
 }

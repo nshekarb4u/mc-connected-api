@@ -133,4 +133,20 @@ public class ConnectedControllerTest {
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string("no"));
     }
+    @Test
+    public void test_When_Internal_Service_Exception() throws Exception {
+        String origin="Chicago";
+        String destination="Charlotte";
+        Mockito.when(service.hasRoadBetween(origin,destination)).thenThrow(NullPointerException.class);
+        this.mockMvc
+                .perform(get("/connected")
+                        .contentType(MediaType.TEXT_PLAIN_VALUE)
+                        .accept(MediaType.TEXT_PLAIN_VALUE)
+                        .param("origin",origin)
+                        .param("destination",destination))
+                .andDo(print())
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().string("Unexpected Error at server side. Please contact API Team if it repeats."));
+        verify(service, times(1)).hasRoadBetween(origin,destination);
+    }
 }
