@@ -1,5 +1,5 @@
 
-mc-connected-api
+MasterCard Coding Challenge
 =============================
 REST API to determine whether two cities are connected
 
@@ -25,8 +25,8 @@ Prerequisites
 * Install Maven
 * Install an IDE or editor of your choice
 
-Getting Started
----------------
+Building and Running the App
+----------------------------
 * Application uses `city.txt` as roads/routes file from `src/main/resources` directory. We can update it, if we wish to test app on a different set of routes.
 * To build the project, run `mvn package`.
 * To start the application, use one of the below mentioned approaches:
@@ -36,11 +36,10 @@ Getting Started
   * `Run as SpringBoot Application` If the IDE auto-detects as SrpingBoot App.
 * The server will start on localhost on port 8080.
 
-Working with Application (Usability)
+Application Usage
 ------------------------------------
 * Please use http://localhost:8080/swagger-ui.html link, to access API swagger dashboard as shown below.
-* ![swagger-ui-dashboard]
-  (https://github.com/nshekarb4u/mc-connected-api/tree/master/src/main/resources/static/swagger-ui.png) 
+  ![swagger ui dashboard](images/swagger-ui.png)
 * API is fully public. We can use any other REST Client's or Browser to access the API.
   http://localhost:8080/connected?origin=Boston&destination=NewarkKapil 
 
@@ -48,5 +47,14 @@ Working with Code
 ---------------------
 * API developed using TDD approach and has exhaustive code coverage. We can use below commands:
   * `mvn clean test` for verifying unit test cases.
-  * `mvn clean verify` for code coverage. We HTML coverage report @<project-home>/mc-connected-api/target/site/jacoco/index.html
+  * `mvn clean verify` for code coverage. The HTML coverage report can be found @`<project-home>target/site/jacoco/index.html`
+    ![code-coverage](images/code-coverage.png)
+  * `mvn clean site` for generating site documentation.
+  
+Feedback 
+---------------------
+  Thank you for giving me opportunity to build. Any kind of criticism or feedback is appreciated!
+    
+
+    
   
