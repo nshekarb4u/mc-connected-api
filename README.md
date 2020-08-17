@@ -12,6 +12,12 @@ Two cities are connected if there's a series of roads that can be travelled from
 List of roads is available in a text file. 
 The file contains a list of city pairs (one pair per line, comma separated), which indicates that there's a route between those cities.
 
+It will be deployed as a `String Boot App` and exposes one endpoint:
+http://localhost:8080/connected?origin=<cit1>&destination=<cit2>
+
+This API will respond with `yes` if city1 is connected to city2,
+`no` if city1 is not connected to city2.
+
 Prerequisites
 -------------
 * Install JDK 1.8 or higher
@@ -32,12 +38,15 @@ Getting Started
 
 Working with Application (Usability)
 ------------------------------------
-* Please use http://localhost:8080/swagger-ui.html link to access swagger dashboard.
+* Please use http://localhost:8080/swagger-ui.html link, to access API swagger dashboard as shown below.
+* ![swagger-ui-dashboard]
+  (https://github.com/nshekarb4u/mc-connected-api/tree/master/src/main/resources/static/swagger-ui.png) 
 * API is fully public. We can use any other REST Client's or Browser to access the API.
-  http://localhost:8080/connected?origin=Boston&destination=Newark 
+  http://localhost:8080/connected?origin=Boston&destination=NewarkKapil 
 
-Working with Sources 
+Working with Code 
 ---------------------
 * API developed using TDD approach and has exhaustive code coverage. We can use below commands:
-  `mvn clean test` for verifying unit test cases.
-  `mvn clean verify` for integration tests and code coverage.  
+  * `mvn clean test` for verifying unit test cases.
+  * `mvn clean verify` for code coverage. We HTML coverage report @<project-home>/mc-connected-api/target/site/jacoco/index.html
+  
