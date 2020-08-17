@@ -1,6 +1,6 @@
-package com.mastercard.connectivity.service;
+package com.mastercard.connected.service;
 
-import com.mastercard.connectivity.model.City;
+import com.mastercard.connected.model.City;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-class ConnectivityServiceTest {
+class ConnectedServiceTest {
 
-    private static ConnectivityService service;
+    private static ConnectedService service;
 
     @BeforeAll
     public static void setUp(){
-        service = new ConnectivityService();
+        service = new ConnectedService();
     }
 
     @Test

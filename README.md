@@ -21,6 +21,7 @@ Prerequisites
 
 Getting Started
 ---------------
+* Application uses `city.txt` as roads/routes file from `src/main/resources` directory. We can update it, if we wish to test app on a different set of routes.
 * To build the project, run `mvn package`.
 * To start the application, use one of the below mentioned approaches:
   * run the provided `startup.sh`.
@@ -29,3 +30,14 @@ Getting Started
   * `Run as SpringBoot Application` If the IDE auto-detects as SrpingBoot App.
 * The server will start on localhost on port 8080.
 
+Working with Application (Usability)
+------------------------------------
+* Please use http://localhost:8080/swagger-ui.html link to access swagger dashboard.
+* API is fully public. We can use any other REST Client's or Browser to access the API.
+  http://localhost:8080/connected?origin=Boston&destination=Newark 
+
+Working with Sources 
+---------------------
+* API developed using TDD approach and has exhaustive code coverage. We can use below commands:
+  `mvn clean test` for verifying unit test cases.
+  `mvn clean verify` for integration tests and code coverage.  

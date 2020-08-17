@@ -1,4 +1,4 @@
-package com.mastercard.connectivity.util;
+package com.mastercard.connected.util;
 
 public enum ApiResullt {
     YES("yes"),

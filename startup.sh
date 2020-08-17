@@ -1,2 +1,2 @@
 #! /bin/bash
-java -jar target/connectivity-0.0.1-SNAPSHOT.jar
+java -jar target/connected-api-0.0.1-SNAPSHOT.jar

@@ -1,6 +1,6 @@
-package com.mastercard.connectivity.service;
+package com.mastercard.connected.service;
 
-import com.mastercard.connectivity.model.City;
+import com.mastercard.connected.model.City;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -10,27 +10,27 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 @Service
 @Getter
 @Setter
-public class ConnectivityService {
+public class ConnectedService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ConnectivityService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConnectedService.class);
     private final ConnectedGraph connectedGraph = new ConnectedGraph();;
 
-    @Value("app.routes.file-name")
+    @Value("${app.routes.file-name}")
     private String fileName;
 
     @PostConstruct
     public ConnectedGraph loadCitiesFile() throws Exception {
         try {
-            File resourceFile = new ClassPathResource(fileName).getFile();
+            InputStream resourceFile = new ClassPathResource(getFileName()).getInputStream();
             Scanner scanner = new Scanner(resourceFile);
-            logger.info("** resource file contents:{}", resourceFile.getAbsolutePath());
+            logger.info("** resource file contents:{}", fileName);
             int count = 0;
             while (scanner.hasNextLine()) {
                 String road = scanner.nextLine();

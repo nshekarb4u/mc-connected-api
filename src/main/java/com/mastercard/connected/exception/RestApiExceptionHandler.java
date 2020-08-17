@@ -1,7 +1,6 @@
-package com.mastercard.connectivity.exception;
+package com.mastercard.connected.exception;
 
-import com.mastercard.connectivity.ConnectivityApplication;
-import com.mastercard.connectivity.util.ApiResullt;
+import com.mastercard.connected.util.ApiResullt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
@@ -13,12 +12,12 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@EnableWebMvc
+//@EnableWebMvc
 @RestControllerAdvice
 public class RestApiExceptionHandler {
 
@@ -33,5 +32,13 @@ public class RestApiExceptionHandler {
     public String handleClientExceptions(Exception exception){
         logger.error("Unexpected input is supplied,exceptionNameResolved={}", exception.getMessage());
         return ApiResullt.NO.getValue();
+    }
+
+    @ExceptionHandler(value = {Exception.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    protected String handleOtherAll(Exception exception, WebRequest request) {
+        logger.error("Other unexpected exception encountered, message={}", exception.getMessage());
+        String responseMsg = "Unexpected Error at server side. Please contact API Team if it repeats.";
+        return responseMsg;
     }
 }

@@ -8,5 +8,5 @@
     <root level="error">
         <appender-ref ref="console"/>
     </root>
-    <logger name="com.mastercard.connectivity" level="debug"/>
+    <logger name="com.mastercard.connected" level="debug"/>
 </configuration>

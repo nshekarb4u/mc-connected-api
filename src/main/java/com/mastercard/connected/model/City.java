@@ -1,4 +1,4 @@
-package com.mastercard.connectivity.model;
+package com.mastercard.connected.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
