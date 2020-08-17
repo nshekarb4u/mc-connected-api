@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mastercard</groupId>
 	<artifactId>connected-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>connected-api</name>
 	<description>REST API to determine whether two cities are connected</description>
 
